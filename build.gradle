@@ -9,27 +9,28 @@ buildscript {
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
     }
 }
-
 apply plugin: "net.minecraftforge.gradle.forge"
 apply plugin: 'org.spongepowered.mixin'
+
+sourceSets {
+    main {
+        ext.refMap = "mixins.quickmove.refmap.json"
+    }
+}
 
 version = "1.0"
 group = "me.quickmove"
 archivesBaseName = "QuickMoveRebind"
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
 minecraft {
     version = "1.8.9-11.15.1.2318-1.8.9"
     runDir = "run"
     mappings = "stable_22"
 }
-
 repositories {
     maven { url 'https://repo.spongepowered.org/maven' }
 }
-
 dependencies {
     compile('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
         exclude module: 'launchwrapper'
@@ -39,7 +40,6 @@ dependencies {
         exclude module: 'log4j-core'
     }
 }
-
 jar {
     manifest {
         attributes(
